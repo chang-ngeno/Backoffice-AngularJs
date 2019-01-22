@@ -1,6 +1,6 @@
 var app = angular.module('adminApp', [ 'ngRoute' ,'ngAnimate', 'ngSanitize','ngTouch', 'ui.bootstrap' ]);
 app.config(['$routeProvider','$locationProvider',function($routeProvider, $locationProvider) {
-    var applicationName = 'Site Administration'
+    	var applicationName = 'Site Administration';
 	$routeProvider
         .when('/', {
             controller : 'HomeController',
@@ -20,8 +20,7 @@ app.config(['$routeProvider','$locationProvider',function($routeProvider, $locat
         })
         .when('/images', {
             controller : 'UserListController',
-            templateUrl : 'static/app/partials/pictures
-        .html'
+            templateUrl : 'static/app/partials/pictures.html'
         })
         .when('/error', {
             controller : 'ErrorController',
@@ -61,3 +60,16 @@ app.controller('DropdownCtrl', function ($scope, $log) {
 
   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 });
+app.directive('ngFiles', ['$parse', function ($parse) {
+
+    function fn_link(scope, element, attrs) {
+        var onChange = $parse(attrs.ngFiles);
+        element.on('change', function (event) {
+            onChange(scope, { $files: event.target.files });
+        });
+    };
+
+    return {
+        link: fn_link
+    }
+} ])

@@ -3,6 +3,7 @@ app.controller('HomeController',function($scope, $location, $route, $routeParams
     $scope.$location = $location;
     $scope.$routeParams = $routeParams;
     $rootScope.pageName = "Dashboard";
+    $rootScope.applicationName = "Back Office";
 		/*var modalInstance = '';
 		$scope.openModal = function(task){
 			modalInstance = $modal.open({
@@ -27,4 +28,7 @@ app.controller('HomeController',function($scope, $location, $route, $routeParams
 		$scope.cancelModal = function(){
          	modalInstance.dismiss('cancel');
       	}*/
+    $scope.isActive = function(route){
+    	return route === '/';
+    }
 });
